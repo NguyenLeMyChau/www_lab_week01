@@ -17,29 +17,44 @@ import java.util.List;
 public class ControllerServlet extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
         AccountRepository accountRepository = new AccountRepository();
 
-        if(action.equals("getAllAccount")){
-            try {
-                PrintWriter out = response.getWriter();
-                out.println("List Account");
+        if(action.equals("login")){
+            PrintWriter out = response.getWriter();
 
-                for (Account account : accountRepository.getAllAccount()) {
-                    out.println("ID: " + account.getId());
-                    out.println("Fullname: " + account.getFullName());
-                    out.println("Password: " + account.getPassword());
-                    out.println("Email: " + account.getEmail());
-                    out.println("Phone: " + account.getPhone());
-                    out.println("Status: " + account.getStatus());
-                    out.println("--------------------");
+            String email = request.getParameter("email");
+            String password = request.getParameter("password");
+
+            request.getSession().setAttribute("email", email);
+            request.getSession().setAttribute("password", password);
+
+            Account account = new Account(email, password);
+
+            try {
+                Account login = accountRepository.loginAccount(account);
+
+                if(login == null){
+                    out.println("Login fail");
                 }
+                else {
+                    response.sendRedirect("informationAccount.jsp");
+                }
+
 
             } catch (SQLException | ClassNotFoundException e) {
                 throw new RuntimeException(e);
             }
+
         }
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String action = request.getParameter("action");
+        AccountRepository accountRepository = new AccountRepository();
+
 
         if(action.equals("addAccount")){
             PrintWriter out = response.getWriter();
@@ -63,6 +78,7 @@ public class ControllerServlet extends HttpServlet {
                     out.println("Email: " + account.getEmail());
                     out.println("Phone: " + account.getPhone());
                     out.println("Status: " + account.getStatus());
+                    response.sendRedirect("products.jsp");
                 }else{
                     out.println("Add account fail !");
                 }
@@ -122,6 +138,8 @@ public class ControllerServlet extends HttpServlet {
             }
 
         }
+
+
     }
 
 }

@@ -99,6 +99,39 @@ public class AccountRepository {
         }
     }
 
+    public Account loginAccount(Account account) throws SQLException, ClassNotFoundException{
+        Connection con;
+        con = ConnectDB.getInstance().getConnection();
+        PreparedStatement statement = null;
+        Account acc = null;
+
+        try{
+            statement = con.prepareStatement("SELECT * FROM account\n" +
+                    "WHERE email = ? AND password = ?");
+            statement.setString(1, account.getEmail());
+            statement.setString(2, account.getPassword());
+
+            ResultSet rs = statement.executeQuery();
+
+            while (rs.next()) {
+                String id = rs.getString("account_id");
+                String fullName = rs.getString("full_name");
+                String password = rs.getString("password");
+                String email = rs.getString("email");
+                String phone = rs.getString("phone");
+                int status = rs.getInt("status");
+
+                acc = new Account(id, fullName, password, email, phone, status);
+
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return acc;
+
+    }
+
 
 
 }

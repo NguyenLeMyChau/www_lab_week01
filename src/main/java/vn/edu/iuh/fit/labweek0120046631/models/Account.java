@@ -69,6 +69,11 @@ public class Account {
         this.status = status;
     }
 
+    public Account(String email, String password) {
+        this.email = email;
+        this.password = password;
+    }
+
     @Override
     public String toString() {
         return "Account{" +
