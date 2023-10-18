@@ -132,6 +132,43 @@ public class AccountRepository {
 
     }
 
+    public List<Account> getAccountFromRoleId(String roleId) throws SQLException, ClassNotFoundException {
+        Connection con;
+        con = ConnectDB.getInstance().getConnection();
+        PreparedStatement statement = null;
+
+        List<Account> accounts = new ArrayList<>();
+
+        Account account = null;
+
+        try{
+            statement = con.prepareStatement("SELECT a.account_id, full_name, email, phone, status\n" +
+                    "FROM account a JOIN grant_access g ON a.account_id = g.account_id\n" +
+                    "WHERE role_id = ?");
+            statement.setString(1, roleId);
+
+            ResultSet rs = statement.executeQuery();
+
+            while (rs.next()) {
+                String acc_id = rs.getString("account_id");
+                String name = rs.getString("full_name");
+                String email = rs.getString("email");
+                String phone = rs.getString("phone");
+                int status = rs.getInt("status");
+
+                account = new Account(acc_id, name, email, phone, status);
+
+                accounts.add(account);
+
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return accounts;
+
+    }
+
 
 
 }

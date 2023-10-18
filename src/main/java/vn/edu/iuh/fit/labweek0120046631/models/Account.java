@@ -69,10 +69,24 @@ public class Account {
         this.status = status;
     }
 
+    public Account(String id, String fullName, String email, String phone, int status) {
+        this.id = id;
+        this.fullName = fullName;
+        this.email = email;
+        this.phone = phone;
+        this.status = status;
+    }
+
     public Account(String email, String password) {
         this.email = email;
         this.password = password;
     }
+
+    public Account(String id) {
+        this.id = id;
+    }
+
+
 
     @Override
     public String toString() {

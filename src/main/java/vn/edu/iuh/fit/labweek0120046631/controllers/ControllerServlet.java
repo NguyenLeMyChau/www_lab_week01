@@ -1,17 +1,19 @@
 package vn.edu.iuh.fit.labweek0120046631.controllers;
 
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import vn.edu.iuh.fit.labweek0120046631.models.Account;
+import vn.edu.iuh.fit.labweek0120046631.models.GrantAccess;
 import vn.edu.iuh.fit.labweek0120046631.repositories.AccountRepository;
+import vn.edu.iuh.fit.labweek0120046631.repositories.GrantAccessRepository;
 
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
-import java.util.List;
 
 @WebServlet(urlPatterns = "/ControllerServlet")
 public class ControllerServlet extends HttpServlet {
@@ -19,7 +21,10 @@ public class ControllerServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
+
         AccountRepository accountRepository = new AccountRepository();
+
+        GrantAccessRepository grantAccessRepository = new GrantAccessRepository();
 
         if(action.equals("login")){
             PrintWriter out = response.getWriter();
@@ -39,13 +44,36 @@ public class ControllerServlet extends HttpServlet {
                     out.println("Login fail");
                 }
                 else {
-                    response.sendRedirect("informationAccount.jsp");
-                }
+                    GrantAccess grantAccess = grantAccessRepository.getGrantAccess(login.getId());
+                    if(grantAccess.getId().equals("admin"))
+                        response.sendRedirect("account.jsp");
+                    else{
+                        response.sendRedirect("informationAccount.jsp");
+                    }                }
 
 
             } catch (SQLException | ClassNotFoundException e) {
                 throw new RuntimeException(e);
             }
+
+        }
+
+        if(action.equals("changeRoleId")){
+            String roleId = request.getParameter("roleId");
+
+            request.getSession().setAttribute("roleId",roleId);
+            System.out.println("roleId: " + roleId);
+
+            RequestDispatcher rd = request.getRequestDispatcher("/grantAccess.jsp");
+            rd.include(request,response);
+
+
+//            try {
+//                List<GrantAccess> grantAccesses = grantAccessRepository.getAccountFromRoleId(roleId);
+//
+//            } catch (SQLException | ClassNotFoundException e) {
+//                throw new RuntimeException(e);
+//            }
 
         }
     }
@@ -99,9 +127,7 @@ public class ControllerServlet extends HttpServlet {
                     out.println("Delete success");
                 else
                     out.println("Delete fail");
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            } catch (ClassNotFoundException e) {
+            } catch (SQLException | ClassNotFoundException e) {
                 throw new RuntimeException(e);
             }
 
@@ -138,6 +164,7 @@ public class ControllerServlet extends HttpServlet {
             }
 
         }
+
 
 
     }

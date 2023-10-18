@@ -1,6 +1,8 @@
 <%@ page import="vn.edu.iuh.fit.labweek0120046631.repositories.AccountRepository" %>
 <%@ page import="vn.edu.iuh.fit.labweek0120046631.models.Account" %>
-<%@ page import="java.sql.SQLException" %><%--
+<%@ page import="java.sql.SQLException" %>
+<%@ page import="vn.edu.iuh.fit.labweek0120046631.repositories.GrantAccessRepository" %>
+<%@ page import="vn.edu.iuh.fit.labweek0120046631.models.GrantAccess" %><%--
   Created by IntelliJ IDEA.
   User: CHAU
   Date: 10/14/2023
@@ -13,11 +15,47 @@
     <title>Information Account</title>
 
     <style>
-        body{
-            background-color: midnightblue;
+        .informationAccount{
+            width: 279px;
+            height: 694px;
+            background-color: #176D80;
+            padding-top: 50px;
             display: flex;
             justify-content: center;
             align-items: center;
+            flex-direction: column;
+        }
+
+        .avatar{
+            text-align: center;
+            font-size: 30px;
+            font-weight: bold;
+            width: 100%;
+            height: 150px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            color: white;
+        }
+
+        .information{
+            width: 279px;
+            height: 400px;
+            text-align: left;
+            font-size: 20px;
+            display: flex;
+            flex-direction: column;
+            color: white;
+        }
+
+        .btnLogOut{
+            width: 171px;
+            height: 53px;
+            background-color: white;
+            color: #176D80;
+            font-size: 30px;
+            border: none;
         }
 
 
@@ -31,49 +69,36 @@
                 try {
                    Account acc = accountRepository.loginAccount(new Account(email, password));
 
+                    GrantAccessRepository grantAccessRepository = new GrantAccessRepository();
+                    GrantAccess grantAccess = grantAccessRepository.getGrantAccess(acc.getId());
+
             %>
 
-                    <div style="width: 330px; height: 250px; background-color: white; text-align: center; padding-top: 100px">
-                        <table style="margin-left: auto; margin-right: auto">
-                            <tr>
-                                <th>Account Id</th>
-                                <td><%=acc.getId()%></td>
-                            </tr>
+            <div class="informationAccount">
+                <div class="avatar">
+                    <img src="iconPerson.png">
+                    <label style="margin-top: 10px"><%=acc.getFullName()%></label>
+                </div>
 
-                            <tr>
-                                <th>Full name</th>
-                                <td><%=acc.getFullName()%></td>
-                            </tr>
+                <div class="information">
+                    <label style="margin-left: 20px; margin-top: 30px">Account ID: <%=acc.getId()%></label>
+                    <label style="margin-left: 20px; margin-top: 20px">Role: <%=grantAccess.getId()%></label>
+                    <label style="margin-left: 20px; margin-top: 20px">Email: <%=acc.getEmail()%></label>
+                    <label style="margin-left: 20px; margin-top: 20px">Phone: <%=acc.getPhone()%></label>
+                    <label style="margin-left: 20px; margin-top: 20px">Status: <%=acc.getStatus()%></label>
+                </div>
 
-                            <tr>
-                                <th>Password</th>
-                                <td><%=acc.getPassword()%></td>
-                            </tr>
+                <button type="submit" name="action" value="logOut" class="btnLogOut">LOG OUT</button>
 
-
-                            <tr>
-                                <th>Email</th>
-                                <td><%=acc.getEmail()%></td>
-                            </tr>
-
-                            <tr>
-                                <th>Phone</th>
-                                <td><%=acc.getPhone()%></td>
-                            </tr>
-
-                            <tr>
-                                <th>Status</th>
-                                <td><%=acc.getStatus()%></td>
-                            </tr>
-
-                            <%
-                                } catch (SQLException | ClassNotFoundException e) {
-                                    throw new RuntimeException(e);
-                                }
-                            %>
-                        </table>
+            </div>
 
 
-                    </div>
+            <%
+                } catch (SQLException | ClassNotFoundException e) {
+                    throw new RuntimeException(e);
+                }
+            %>
+
+
 </body>
 </html>

@@ -11,18 +11,54 @@
     <title>LOGIN</title>
     <style>
         body{
-            background-color: midnightblue;
+            background-color: #176D80;
             display: flex;
             justify-content: center;
             align-items: center;
         }
 
+        .frameLogin{
+            width: 590px;
+            height: 462px;
+            background-color: white;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
         .btnLogin{
-            width: 80px;
-            height: 30px;
-            background-color: midnightblue;
+            width: 248px;
+            height: 69px;
+            background-color: #176D80;
             color: white;
             margin: 15px;
+            font-size: 30px;
+            font-weight: 100;
+            border: none;
+
+        }
+
+        h1{
+            color: #176D80;
+            font-size: 45px;
+        }
+
+        input[type=email] {
+            width: 501px;
+            height: 76px;
+            margin-bottom: 10px;
+            font-size: 30px;
+            padding-left: 30px;
+        }
+
+        input[type=password] {
+            width: 501px;
+            height: 76px;
+            font-size: 30px;
+            padding-left: 30px;
+
         }
 
 
@@ -30,14 +66,16 @@
 </head>
 <body>
             <form action="ControllerServlet" method="post">
-                <div style="width: 330px; height: 250px; background-color: white; text-align: center">
-                    <h1 style="text-align: center">LOGIN</h1>
 
-                    <input type="email" id="email" name="email" placeholder="Email" required style="padding: 10px; margin-bottom: 10px"> <br>
+                <div class="frameLogin">
 
-                    <input type="password" id="password" name="password" placeholder="Password" required style="padding: 10px"> <br>
+                    <h1>LOGIN</h1>
 
-                    <input type="submit" name="action" value="login" class="btnLogin">
+                    <input type="email" id="email" name="email" placeholder="Email" required> <br>
+
+                    <input type="password" id="password" name="password" placeholder="Password" required> <br>
+
+                    <button type="submit" name="action" value="login" class="btnLogin">LOGIN</button>
 
                 </div>
             </form>
