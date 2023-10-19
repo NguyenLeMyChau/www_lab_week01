@@ -8,6 +8,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class GrantAccessRepository {
 
@@ -40,7 +42,28 @@ public class GrantAccessRepository {
     }
 
 
+    //Lấy list account ID đã cấp quyền
+    public List<String> getListAccountID() throws SQLException, ClassNotFoundException {
+        Connection con;
+        con = ConnectDB.getInstance().getConnection();
+        PreparedStatement statement = null;
+        List<String> listAccID = new ArrayList<>();
 
+        try{
+            statement = con.prepareStatement("select acc.account_id from account acc JOIN grant_access ga ON acc.account_id = ga.account_id");
+
+            ResultSet rs = statement.executeQuery();
+
+            while (rs.next()) {
+                String accId = rs.getString("account_id");
+
+                listAccID.add(accId);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return listAccID;
+    }
 
 
 

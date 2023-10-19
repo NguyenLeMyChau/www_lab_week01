@@ -4,14 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d91643eb-b996-4bc9-9ad0-7bfb58f8ac46" name="Changes" comment="update link figma + Hiển thị list&lt;Account&gt; của một Role">
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/logs.jsp" afterDir="false" />
+    <list default="true" id="d91643eb-b996-4bc9-9ad0-7bfb58f8ac46" name="Changes" comment="findAll Role">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/iuh/fit/labweek0120046631/controllers/ControllerServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/edu/iuh/fit/labweek0120046631/controllers/ControllerServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/iuh/fit/labweek0120046631/repositories/GrantAccessRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/edu/iuh/fit/labweek0120046631/repositories/GrantAccessRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/iuh/fit/labweek0120046631/repositories/LogRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/edu/iuh/fit/labweek0120046631/repositories/LogRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/account.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/account.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/grantAccess.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/grantAccess.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -209,7 +205,7 @@
       <workItem from="1695394623407" duration="998000" />
       <workItem from="1697206313128" duration="15346000" />
       <workItem from="1697636569162" duration="18584000" />
-      <workItem from="1697697297103" duration="4844000" />
+      <workItem from="1697697297103" duration="11442000" />
     </task>
     <task id="LOCAL-00001" summary="create package controller, models, repositories">
       <option name="closed" value="true" />
@@ -243,7 +239,23 @@
       <option name="project" value="LOCAL" />
       <updated>1697656495847</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="findAll logs + Ghi log mỗi lần account login, logout.">
+      <option name="closed" value="true" />
+      <created>1697728100093</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1697728100093</updated>
+    </task>
+    <task id="LOCAL-00006" summary="findAll Role">
+      <option name="closed" value="true" />
+      <created>1697728570969</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1697728570969</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -254,6 +266,8 @@
     <MESSAGE value="Add, Delete, Update, Get All for Account" />
     <MESSAGE value="Login + Hiện thông tin account" />
     <MESSAGE value="update link figma + Hiển thị list&lt;Account&gt; của một Role" />
-    <option name="LAST_COMMIT_MESSAGE" value="update link figma + Hiển thị list&lt;Account&gt; của một Role" />
+    <MESSAGE value="findAll logs + Ghi log mỗi lần account login, logout." />
+    <MESSAGE value="findAll Role" />
+    <option name="LAST_COMMIT_MESSAGE" value="findAll Role" />
   </component>
 </project>

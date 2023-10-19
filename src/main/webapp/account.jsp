@@ -1,6 +1,7 @@
 <%@ page import="vn.edu.iuh.fit.labweek0120046631.repositories.AccountRepository" %>
 <%@ page import="vn.edu.iuh.fit.labweek0120046631.models.Account" %>
-<%@ page import="java.util.List" %><%--
+<%@ page import="java.util.List" %>
+<%@ page import="vn.edu.iuh.fit.labweek0120046631.repositories.GrantAccessRepository" %><%--
   Created by IntelliJ IDEA.
   User: CHAU
   Date: 10/13/2023
@@ -78,7 +79,9 @@
 <body>
         <%
             AccountRepository accountRepository = new AccountRepository();
+            GrantAccessRepository grantAccessRepository = new GrantAccessRepository();
             List<Account> accounts = accountRepository.getAllAccount();
+            List<String> listAccId = grantAccessRepository.getListAccountID();
         %>
 
         <form action="ControllerServlet" method="get">
@@ -98,7 +101,6 @@
                     <th colspan="2" style="background-color: #124a4b;"><a href="insertAccount.jsp" style="color: white; background-color: #124a4b; width: 30px; height: 30px">Insert</a></th>
                 </tr>
                 <%for (Account account : accounts) {
-
                 %>
                 <tr>
                     <td><%=account.getId()%></td>
@@ -107,6 +109,13 @@
                     <td><%=account.getEmail()%></td>
                     <td><%=account.getPhone()%></td>
                     <td><%=account.getStatus()%></td>
+
+                    <%
+                        if(listAccId.contains(account.getId())){ //kiểm tra account.getId có tồn tại trong listAccId không
+                    %>
+                    <td>Đã cấp quyền</td>
+                    <%}
+                        else{%>
                     <td>
                         <select name="roleId" id="roleId">
                             <option value="admin">admin</option>
@@ -114,10 +123,13 @@
                         </select>
                         <button type="submit" name="action" value="grantPermissions">Confirm</button>
                     </td>
+                    <%}%>
+
                     <td><a href="deleteAccount.jsp">Delete</a></td>
                     <td><a href="updateAccount.jsp">Update</a></td>
 
                 </tr>
+
                 <%}%>
             </table>
 
