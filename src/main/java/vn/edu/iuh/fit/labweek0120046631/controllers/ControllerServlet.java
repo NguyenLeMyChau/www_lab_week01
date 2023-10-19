@@ -102,6 +102,24 @@ public class ControllerServlet extends HttpServlet {
             }
 
         }
+
+        if(action.equals("grantPermissions")) {
+
+            try {
+                String roleId = request.getParameter("roleId");
+
+                Account account = new Account(request.getParameter("accId"));
+
+                GrantAccess grantAccess = new GrantAccess(roleId, account, true, "");
+
+                grantAccessRepository.insertGrantAccess(grantAccess);
+
+                response.sendRedirect("account.jsp");
+
+            } catch (SQLException | ClassNotFoundException e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
 
     @Override
@@ -132,7 +150,7 @@ public class ControllerServlet extends HttpServlet {
                     out.println("Email: " + account.getEmail());
                     out.println("Phone: " + account.getPhone());
                     out.println("Status: " + account.getStatus());
-                    response.sendRedirect("products.jsp");
+                    response.sendRedirect("account.jsp");
                 }else{
                     out.println("Add account fail !");
                 }

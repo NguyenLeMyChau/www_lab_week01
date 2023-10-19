@@ -65,7 +65,27 @@ public class GrantAccessRepository {
         return listAccID;
     }
 
+    public boolean insertGrantAccess(GrantAccess grantAccess) throws SQLException, ClassNotFoundException {
+        Connection con;
+        con = ConnectDB.getInstance().getConnection();
+        try {
+            PreparedStatement statement = null;
 
+            statement = con.prepareStatement("INSERT INTO grant_access\n" +
+                    "VALUES (?,?,?,?)");
+            statement.setString(1, grantAccess.getId());
+            statement.setString(2, grantAccess.getAccount().getId());
+            statement.setBoolean(3, grantAccess.isGrant());
+            statement.setString(4, grantAccess.getNote());
+
+            statement.executeUpdate();
+            return true;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 
 
 }

@@ -73,10 +73,18 @@
             border: none;
         }
 
+        input[type=text]{
+            border: none;
+            background: transparent;
+            text-align: center;
+            outline-width: 0;
+        }
+
 
     </style>
 </head>
 <body>
+
         <%
             AccountRepository accountRepository = new AccountRepository();
             GrantAccessRepository grantAccessRepository = new GrantAccessRepository();
@@ -84,7 +92,7 @@
             List<String> listAccId = grantAccessRepository.getListAccountID();
         %>
 
-        <form action="ControllerServlet" method="get">
+        <form action="ControllerServlet" method="post">
             <div class="header">
                 <label>Account</label>
             </div>
@@ -101,9 +109,10 @@
                     <th colspan="2" style="background-color: #124a4b;"><a href="insertAccount.jsp" style="color: white; background-color: #124a4b; width: 30px; height: 30px">Insert</a></th>
                 </tr>
                 <%for (Account account : accounts) {
+                    String id = account.getId();
                 %>
                 <tr>
-                    <td><%=account.getId()%></td>
+                    <td><input type="text" name="accId" value="<%=id%>" readonly></td>
                     <td><%=account.getFullName()%></td>
                     <td><%=account.getPassword()%></td>
                     <td><%=account.getEmail()%></td>
