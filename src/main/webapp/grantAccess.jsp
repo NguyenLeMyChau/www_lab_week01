@@ -13,6 +13,74 @@
 <html>
 <head>
     <title>Hiển thị các Account của một Role</title>
+
+    <style>
+        .header{
+            width: 100%;
+            height: 117px;
+            background-color: #176D80;
+            color: white;
+            font-size: 40px;
+            margin-bottom: 50px;
+        }
+
+        table{
+            width: 100%;
+            text-align: center;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th {
+            background-color: #176D80;
+            color: white;
+            padding: 15px;
+        }
+
+        td{
+            padding: 10px;
+        }
+
+
+        tr:nth-child(even){
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: coral;
+        }
+
+        a{
+            font-size: 25px;
+            text-decoration: none;
+        }
+
+        div{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        select{
+            width: 120px;
+            height: 40px;
+            margin-right: 20px;
+            border: 1px solid #176D80;
+            color: #176D80;
+            font-weight: bold;
+            font-size: 20px;
+            text-align: center;
+        }
+
+        button{
+            width: 120px;
+            height: 40px;
+            background-color: #176D80;
+            color: white;
+            border: none;
+        }
+
+
+    </style>
 </head>
 <body>
 <%
@@ -20,7 +88,21 @@
 %>
 
 <form action="ControllerServlet" method="post">
-    <table style="width: 50%; text-align: center;">
+
+    <div class="header">
+        <label>Grant Access</label>
+    </div>
+
+    <div style="margin-top: -20px">
+        <select name="roleId" id="roleId">
+            <option value="admin">admin</option>
+            <option value="user">user</option>
+        </select>
+        <button type="submit" name="action" value="changeRoleId">Change</button>
+    </div>
+
+
+    <table>
         <tr>
             <th>Account ID</th>
             <th>Full name</th>
@@ -28,12 +110,6 @@
             <th>Phone</th>
             <th>Status</th>
 
-
-            <th><select name="roleId" id="roleId">
-                                <option value="admin">admin</option>
-                                <option value="user">user</option>
-                            </select>
-                                <input type="submit" name="action" value="changeRoleId" >
         </tr>
         <%
             try {

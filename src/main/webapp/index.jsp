@@ -41,7 +41,7 @@
             <a href="account.jsp">Account</a>
             <a href="#">Role</a>
             <a href="grantAccess.jsp">Grant Access</a>
-            <a href="#">Log</a>
+            <a href="logs.jsp">Log</a>
 
 
             <a href="login.jsp" style="margin-left: 800px">Login</a>

@@ -4,21 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d91643eb-b996-4bc9-9ad0-7bfb58f8ac46" name="Changes" comment="Login + Hiện thông tin account">
-      <change afterPath="$PROJECT_DIR$/data/week01_db_script.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/week1.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/figma/linkFigma" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/grantAccess.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/iconPerson.png" afterDir="false" />
+    <list default="true" id="d91643eb-b996-4bc9-9ad0-7bfb58f8ac46" name="Changes" comment="update link figma + Hiển thị list&lt;Account&gt; của một Role">
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/logs.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/iuh/fit/labweek0120046631/controllers/ControllerServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/edu/iuh/fit/labweek0120046631/controllers/ControllerServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/iuh/fit/labweek0120046631/models/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/edu/iuh/fit/labweek0120046631/models/Account.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/iuh/fit/labweek0120046631/repositories/AccountRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/edu/iuh/fit/labweek0120046631/repositories/AccountRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/iuh/fit/labweek0120046631/repositories/GrantAccessRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/edu/iuh/fit/labweek0120046631/repositories/GrantAccessRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/vn/edu/iuh/fit/labweek0120046631/repositories/LogRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vn/edu/iuh/fit/labweek0120046631/repositories/LogRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/account.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/account.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/informationAccount.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/informationAccount.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/login.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/grantAccess.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/grantAccess.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,6 +52,9 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/src/main/java/vn/edu/iuh/fit/labweek0120046631/models/Status.java" root0="FORCE_HIGHLIGHTING" />
   </component>
+  <component name="JpbToolWindowState">
+    <option name="isToolWindowVisible" value="false" />
+  </component>
   <component name="LogFilters">
     <option name="FILTER_ERRORS" value="false" />
     <option name="FILTER_WARNINGS" value="false" />
@@ -80,24 +76,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "master",
-    "jdk.selected.JAVA_MODULE": "17",
-    "last_opened_file_path": "C:/Users/CHAU/IdeaProjects/labs/week_01/lab-week-01-20046631",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.2",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;17&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/CHAU/IdeaProjects/labs/week_01/lab-week-01-20046631&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\CHAU\IdeaProjects\labs\week_01\lab-week-01-20046631" />
@@ -212,7 +208,8 @@
       <workItem from="1695393663854" duration="13000" />
       <workItem from="1695394623407" duration="998000" />
       <workItem from="1697206313128" duration="15346000" />
-      <workItem from="1697636569162" duration="18195000" />
+      <workItem from="1697636569162" duration="18584000" />
+      <workItem from="1697697297103" duration="4844000" />
     </task>
     <task id="LOCAL-00001" summary="create package controller, models, repositories">
       <option name="closed" value="true" />
@@ -238,7 +235,15 @@
       <option name="project" value="LOCAL" />
       <updated>1697221918302</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="update link figma + Hiển thị list&lt;Account&gt; của một Role">
+      <option name="closed" value="true" />
+      <created>1697656495847</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1697656495847</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -248,6 +253,7 @@
     <MESSAGE value="create package controller, models, repositories" />
     <MESSAGE value="Add, Delete, Update, Get All for Account" />
     <MESSAGE value="Login + Hiện thông tin account" />
-    <option name="LAST_COMMIT_MESSAGE" value="Login + Hiện thông tin account" />
+    <MESSAGE value="update link figma + Hiển thị list&lt;Account&gt; của một Role" />
+    <option name="LAST_COMMIT_MESSAGE" value="update link figma + Hiển thị list&lt;Account&gt; của một Role" />
   </component>
 </project>

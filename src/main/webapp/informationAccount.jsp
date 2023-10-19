@@ -74,6 +74,8 @@
 
             %>
 
+            <form action="ControllerServlet" method="post">
+
             <div class="informationAccount">
                 <div class="avatar">
                     <img src="iconPerson.png">
@@ -91,6 +93,7 @@
                 <button type="submit" name="action" value="logOut" class="btnLogOut">LOG OUT</button>
 
             </div>
+            </form>
 
 
             <%

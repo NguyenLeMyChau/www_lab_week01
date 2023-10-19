@@ -1,5 +1,6 @@
 package vn.edu.iuh.fit.labweek0120046631.controllers;
 
+import jakarta.ejb.Local;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -8,12 +9,15 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import vn.edu.iuh.fit.labweek0120046631.models.Account;
 import vn.edu.iuh.fit.labweek0120046631.models.GrantAccess;
+import vn.edu.iuh.fit.labweek0120046631.models.Logs;
 import vn.edu.iuh.fit.labweek0120046631.repositories.AccountRepository;
 import vn.edu.iuh.fit.labweek0120046631.repositories.GrantAccessRepository;
+import vn.edu.iuh.fit.labweek0120046631.repositories.LogRepository;
 
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 
 @WebServlet(urlPatterns = "/ControllerServlet")
 public class ControllerServlet extends HttpServlet {
@@ -26,6 +30,9 @@ public class ControllerServlet extends HttpServlet {
 
         GrantAccessRepository grantAccessRepository = new GrantAccessRepository();
 
+        LogRepository logRepository = new LogRepository();
+
+
         if(action.equals("login")){
             PrintWriter out = response.getWriter();
 
@@ -35,21 +42,28 @@ public class ControllerServlet extends HttpServlet {
             request.getSession().setAttribute("email", email);
             request.getSession().setAttribute("password", password);
 
-            Account account = new Account(email, password);
 
             try {
-                Account login = accountRepository.loginAccount(account);
+                Account login = accountRepository.loginAccount(new Account(email, password));
 
                 if(login == null){
                     out.println("Login fail");
                 }
                 else {
+                    long sizeLog = logRepository.getAllLogs().size() + 1;
+                    request.getSession().setAttribute("sizeLog", sizeLog);
+
+                    LocalDateTime loginTime = LocalDateTime.now();
+                    request.getSession().setAttribute("loginTime", loginTime);
+
+
                     GrantAccess grantAccess = grantAccessRepository.getGrantAccess(login.getId());
                     if(grantAccess.getId().equals("admin"))
                         response.sendRedirect("account.jsp");
                     else{
                         response.sendRedirect("informationAccount.jsp");
-                    }                }
+                    }
+                }
 
 
             } catch (SQLException | ClassNotFoundException e) {
@@ -62,18 +76,30 @@ public class ControllerServlet extends HttpServlet {
             String roleId = request.getParameter("roleId");
 
             request.getSession().setAttribute("roleId",roleId);
-            System.out.println("roleId: " + roleId);
 
             RequestDispatcher rd = request.getRequestDispatcher("/grantAccess.jsp");
             rd.include(request,response);
 
+        }
 
-//            try {
-//                List<GrantAccess> grantAccesses = grantAccessRepository.getAccountFromRoleId(roleId);
-//
-//            } catch (SQLException | ClassNotFoundException e) {
-//                throw new RuntimeException(e);
-//            }
+        if(action.equals("logOut")){
+            try {
+                Long id = Long.parseLong(request.getSession().getAttribute("sizeLog").toString());
+                LocalDateTime loginTime = (LocalDateTime) request.getSession().getAttribute("loginTime");
+
+                String email = request.getSession().getAttribute("email").toString();
+                String password = request.getSession().getAttribute("password").toString();
+
+                Account account = accountRepository.loginAccount(new Account(email, password));
+                Logs logs = new Logs(id, account,loginTime, LocalDateTime.now(), "");
+
+                logRepository.noteLog(logs);
+
+                response.sendRedirect("login.jsp");
+
+            } catch (SQLException | ClassNotFoundException e) {
+                throw new RuntimeException(e);
+            }
 
         }
     }

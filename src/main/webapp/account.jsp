@@ -54,6 +54,24 @@
             text-decoration: none;
         }
 
+        select{
+            width: 100px;
+            height: 30px;
+            margin-right: 20px;
+            border: 1px solid #176D80;
+            color: #176D80;
+            font-size: 20px;
+            text-align: center;
+        }
+
+        button{
+            width: 100px;
+            height: 30px;
+            background-color: #176D80;
+            color: white;
+            border: none;
+        }
+
 
     </style>
 </head>
@@ -65,7 +83,7 @@
 
         <form action="ControllerServlet" method="get">
             <div class="header">
-                <label>Thao tác với Account</label>
+                <label>Account</label>
             </div>
 
             <table>
@@ -76,6 +94,7 @@
                     <th>Email</th>
                     <th>Phone</th>
                     <th>Status</th>
+                    <th>Grant Permissions</th>
                     <th colspan="2" style="background-color: #124a4b;"><a href="insertAccount.jsp" style="color: white; background-color: #124a4b; width: 30px; height: 30px">Insert</a></th>
                 </tr>
                 <%for (Account account : accounts) {
@@ -88,6 +107,13 @@
                     <td><%=account.getEmail()%></td>
                     <td><%=account.getPhone()%></td>
                     <td><%=account.getStatus()%></td>
+                    <td>
+                        <select name="roleId" id="roleId">
+                            <option value="admin">admin</option>
+                            <option value="user">user</option>
+                        </select>
+                        <button type="submit" name="action" value="grantPermissions">Confirm</button>
+                    </td>
                     <td><a href="deleteAccount.jsp">Delete</a></td>
                     <td><a href="updateAccount.jsp">Update</a></td>
 
