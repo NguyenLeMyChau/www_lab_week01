@@ -39,7 +39,7 @@
 
         <div class="nav">
             <a href="account.jsp">Account</a>
-            <a href="#">Role</a>
+            <a href="role.jsp">Role</a>
             <a href="grantAccess.jsp">Grant Access</a>
             <a href="logs.jsp">Log</a>
 
