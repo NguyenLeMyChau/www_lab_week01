@@ -1,58 +1,84 @@
+<%@ page import="vn.edu.iuh.fit.labweek0120046631.repositories.AccountRepository" %>
+<%@ page import="vn.edu.iuh.fit.labweek0120046631.models.Account" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Main Screen</title>
+  <title>Login</title>
     <style>
-        .nav{
-            display: flex;
-            width: 1440px;
-            height: 117px;
-            background-color: #176D80;
-            align-items: center;
-            padding-left: 30px;
-        }
+    body{
+    background-color: #176D80;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    }
 
-        a{
-            color: white;
-            font-size: 25px;
-            text-decoration: none;
-            margin: 20px;
-        }
+    .frameLogin{
+    width: 590px;
+    height: 462px;
+    background-color: white;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+        margin-top:150px
+    }
 
-        .content{
-            display: flex;
-            width: 1340px;
-            height: 553px;
-            align-items: center;
-            justify-content: center;
-        }
+    .btnLogin{
+    width: 248px;
+    height: 69px;
+    background-color: #176D80;
+    color: white;
+    margin: 15px;
+    font-size: 30px;
+    font-weight: 100;
+    border: none;
 
-        label{
-            font-size: 50px;
-        }
+    }
+
+    h1{
+    color: #176D80;
+    font-size: 45px;
+    }
+
+    input[type=email] {
+    width: 501px;
+    height: 76px;
+    margin-bottom: 10px;
+    font-size: 30px;
+    padding-left: 30px;
+    }
+
+    input[type=password] {
+    width: 501px;
+    height: 76px;
+    font-size: 30px;
+    padding-left: 30px;
+
+    }
+
 
 
     </style>
+
 </head>
 <body>
 
-        <div class="nav">
-            <a href="account.jsp">Account</a>
-            <a href="role.jsp">Role</a>
-            <a href="grantAccess.jsp">Grant Access</a>
-            <a href="logs.jsp">Log</a>
+        <form action="ControllerServlet" method="post">
 
+            <div class="frameLogin">
 
-            <a href="login.jsp" style="margin-left: 800px">Login</a>
-        </div>
+                <h1>LOGIN</h1>
 
-        <div class="content">
-            <label>WWW - Week01 <br>
-                Nguyễn Lê Mỹ Châu - 20046631</label>
-        </div>
+                <input type="email" id="email" name="email" placeholder="Email" required> <br>
 
+                <input type="password" id="password" name="password" placeholder="Password" required> <br>
 
+                <button type="submit" name="action" value="login" class="btnLogin">LOGIN</button>
+
+            </div>
+        </form>
 
 
 

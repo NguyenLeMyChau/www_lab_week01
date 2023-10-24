@@ -15,6 +15,12 @@
     <title>Information Account</title>
 
     <style>
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
         .informationAccount{
             width: 279px;
             height: 694px;

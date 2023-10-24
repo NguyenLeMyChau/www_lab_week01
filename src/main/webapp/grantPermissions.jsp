@@ -1,14 +1,19 @@
-<%--
+<%@ page import="vn.edu.iuh.fit.labweek0120046631.repositories.RoleRepository" %>
+<%@ page import="vn.edu.iuh.fit.labweek0120046631.models.Role" %>
+<%@ page import="java.util.List" %>
+<%@ page import="vn.edu.iuh.fit.labweek0120046631.models.Account" %>
+<%@ page import="vn.edu.iuh.fit.labweek0120046631.repositories.AccountRepository" %>
+<%@ page import="java.sql.SQLException" %><%--
   Created by IntelliJ IDEA.
   User: CHAU
-  Date: 10/13/2023
-  Time: 11:12 PM
+  Date: 10/24/2023
+  Time: 8:28 PM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>LOGIN</title>
+    <title>GrantPermissions</title>
     <style>
         body{
             background-color: #176D80;
@@ -26,6 +31,7 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            margin-top:150px
         }
 
         .btnLogin{
@@ -65,20 +71,45 @@
     </style>
 </head>
 <body>
-            <form action="ControllerServlet" method="post">
+<%
+    RoleRepository roleRepository = new RoleRepository();
+        List<Role> roleList = roleRepository.getAllRole();
 
-                <div class="frameLogin">
+    AccountRepository accountRepository = new AccountRepository();
+        List<Account> accountList = accountRepository.getAllAccount();
 
-                    <h1>LOGIN</h1>
+%>
+<form action="ControllerServlet" method="post">
 
-                    <input type="email" id="email" name="email" placeholder="Email" required> <br>
+    <div class="frameLogin">
 
-                    <input type="password" id="password" name="password" placeholder="Password" required> <br>
+        <h1>LOGIN</h1>
 
-                    <button type="submit" name="action" value="login" class="btnLogin">LOGIN</button>
+        <%
+            for(Role role: roleList){
 
-                </div>
-            </form>
+        %>
+        <datalist>
+            <option value=""><%=role.getId()%></option>
+        </datalist>
+
+        <%}%>
+
+        <%
+            for(Account account: accountList){
+
+        %>
+        <select>
+            <option value="<%=account.getId()%>"><%=account.getId()%></option>
+        </select>
+
+        <%}%>
+
+
+        <button type="submit" name="action" value="login" class="btnLogin">Cấp quyền</button>
+
+    </div>
+</form>
 
 </body>
 </html>

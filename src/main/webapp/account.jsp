@@ -22,7 +22,6 @@
             background-color: #176D80;
             color: white;
             font-size: 40px;
-            margin-bottom: 50px;
         }
 
         table{
@@ -66,11 +65,13 @@
         }
 
         button{
-            width: 100px;
-            height: 30px;
+            width: 300px;
+            height: 50px;
             background-color: #176D80;
             color: white;
             border: none;
+            border-radius: 20px;
+            margin: 10px;
         }
 
         input[type=text]{
@@ -92,9 +93,14 @@
             List<String> listAccId = grantAccessRepository.getListAccountID();
         %>
 
-        <form action="ControllerServlet" method="post">
-            <div class="header">
+
+
+        <div class="header">
                 <label>Account</label>
+            </div>
+
+            <div style="width: 100%; height: 100px;display: flex; justify-content: center; align-items: center">
+                <button><a href="insertAccount.jsp" style="color: white; width: 30px; height: 30px">Insert</a></button>
             </div>
 
             <table>
@@ -105,11 +111,12 @@
                     <th>Email</th>
                     <th>Phone</th>
                     <th>Status</th>
-                    <th>Grant Permissions</th>
-                    <th colspan="2" style="background-color: #124a4b;"><a href="insertAccount.jsp" style="color: white; background-color: #124a4b; width: 30px; height: 30px">Insert</a></th>
+                    <th>Delete</th>
+                    <th>Update</th>
                 </tr>
                 <%for (Account account : accounts) {
                     String id = account.getId();
+                    String delete_string = "ControllerServlet?action=deleteAccount&account_id=" + id;
                 %>
                 <tr>
                     <td><input type="text" name="accId" value="<%=id%>" readonly></td>
@@ -119,31 +126,17 @@
                     <td><%=account.getPhone()%></td>
                     <td><%=account.getStatus()%></td>
 
-                    <%
-                        if(listAccId.contains(account.getId())){ //kiểm tra account.getId có tồn tại trong listAccId không
-                    %>
-                    <td>Đã cấp quyền</td>
-                    <%}
-                        else{%>
                     <td>
-                        <select name="roleId" id="roleId">
-                            <option value="admin">admin</option>
-                            <option value="user">user</option>
-                        </select>
-                        <button type="submit" name="action" value="grantPermissions">Confirm</button>
+                       <a href=<%=delete_string%>>Delete</a>
                     </td>
-                    <%}%>
-
-                    <td><a href="deleteAccount.jsp">Delete</a></td>
-                    <td><a href="updateAccount.jsp">Update</a></td>
+                    <td><a href="updateAccount.jsp?account_id=<%=id%>
+                        <%request.getSession().setAttribute("acc_id", id);%>">Update</a></td>
 
                 </tr>
 
+
                 <%}%>
             </table>
-
-
-        </form>
 
 </body>
 </html>

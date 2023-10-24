@@ -59,14 +59,17 @@ public class AccountRepository {
         }
     }
 
-    public boolean deleteAccount(String id) throws SQLException, ClassNotFoundException {
+    public boolean deleteAccount(String id, int status) throws SQLException, ClassNotFoundException {
         Connection con;
         con = ConnectDB.getInstance().getConnection();
         PreparedStatement statement = null;
 
         try {
-            statement = con.prepareStatement("delete from account where account_id = ?");
-            statement.setString(1, id);
+            statement = con.prepareStatement("UPDATE account\n" +
+                    "SET status = ?\n" +
+                    "WHERE account_id = ?");
+            statement.setInt(1, status);
+            statement.setString(2, id);
            statement.executeUpdate();
 
            return true;

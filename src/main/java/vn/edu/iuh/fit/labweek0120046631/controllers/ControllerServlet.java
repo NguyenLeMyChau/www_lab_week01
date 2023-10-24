@@ -59,7 +59,7 @@ public class ControllerServlet extends HttpServlet {
 
                     GrantAccess grantAccess = grantAccessRepository.getGrantAccess(login.getId());
                     if(grantAccess.getId().equals("admin"))
-                        response.sendRedirect("account.jsp");
+                        response.sendRedirect("adminScreen.jsp");
                     else{
                         response.sendRedirect("informationAccount.jsp");
                     }
@@ -95,7 +95,7 @@ public class ControllerServlet extends HttpServlet {
 
                 logRepository.noteLog(logs);
 
-                response.sendRedirect("login.jsp");
+                response.sendRedirect("index.jsp");
 
             } catch (SQLException | ClassNotFoundException e) {
                 throw new RuntimeException(e);
@@ -164,9 +164,10 @@ public class ControllerServlet extends HttpServlet {
             PrintWriter out = response.getWriter();
 
             String accountId = request.getParameter("account_id");
+            //int status = Integer.parseInt(request.getParameter("status"));
 
             try {
-                boolean deleteAccount = accountRepository.deleteAccount(accountId);
+                boolean deleteAccount = accountRepository.deleteAccount(accountId, 0);
                 if(deleteAccount)
                     out.println("Delete success");
                 else
